@@ -73,33 +73,6 @@ def extract_lbp_features(images, filenames, dataset):
 
 # Streamlit app configuration
 st.set_page_config(layout="wide")
-
-def load_image(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode()
-
-# Path atau URL menuju gambar logo
-logo_path1 = 'BME.png'
-logo_path2 = 'ITS.png'
-
-# Convert images to base64
-logo1_base64 = load_image(logo_path1)
-logo2_base64 = load_image(logo_path2)
-
-# Menampilkan logo di kanan atas dan kiri atas
-st.markdown(
-    f"""
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-            <img src="data:image/png;base64,{logo2_base64}" width="100">
-        </div>
-        <div>
-            <img src="data:image/png;base64,{logo1_base64}" width="100">
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
 st.title('TUGAS AKHIR')
 st.title('Deteksi dan Klasifikasi Retinopati Hipertensi dari Citra Fundus Retina menggunakan Support Vector Machine (SVM)')
 st.markdown('---')
