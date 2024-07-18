@@ -6,3 +6,4 @@ Pillow
 scikit-image
 joblib
 matplotlib
+os
