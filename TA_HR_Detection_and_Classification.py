@@ -73,7 +73,6 @@ def extract_lbp_features(images, filenames, dataset):
 
 # Streamlit app configuration
 st.set_page_config(layout="wide")
-st.title('TUGAS AKHIR')
 st.title('Deteksi dan Klasifikasi Retinopati Hipertensi dari Citra Fundus Retina menggunakan Support Vector Machine (SVM)')
 st.markdown('---')
 st.subheader('Nama: Verrent Ulayya Ans')
