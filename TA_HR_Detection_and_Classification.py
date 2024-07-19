@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from PIL import Image, ImageOps, ImageEnhance
+from PIL import Image, ImageOps, ImageEnhance, ImageFilter
 import numpy as np
 import matplotlib.pyplot as plt
 from skimage.feature import local_binary_pattern
