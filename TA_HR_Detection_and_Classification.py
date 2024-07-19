@@ -77,8 +77,8 @@ st.title('Deteksi dan Klasifikasi Retinopati Hipertensi dari Citra Fundus Retina
 st.markdown('---')
 st.subheader('Nama: Verrent Ulayya Ans')
 st.subheader('NRP: 5023201066')
-st.subheader('Dosen Pembimbing 1: Dr. Tri Arief Sardjono, S.T., M.T.')
-st.subheader('Dosen Pembimbing 2: Nada Fitrieyatul Hikmah, S.T., M.T.')
+#st.subheader('Dosen Pembimbing 1: Dr. Tri Arief Sardjono, S.T., M.T.')
+#st.subheader('Dosen Pembimbing 2: Nada Fitrieyatul Hikmah, S.T., M.T.')
 
 # Membuat tab di dalam halaman utama
 tabs = st.tabs(["Input Data Pasien", "Pemrosesan dan Summary"])
@@ -111,8 +111,8 @@ def process():
         uploaded_image = st.file_uploader("Upload Image", type=["png", "jpg", "jpeg"])
 
         # Upload dataset
-        st.subheader('Upload Dataset')
-        uploaded_data = st.file_uploader("Upload Dataset", type="xlsx")
+        #st.subheader('Upload Dataset')
+        #uploaded_data = st.file_uploader("Upload Dataset", type="xlsx")
 
         if uploaded_image is not None and uploaded_data is not None:
             image = Image.open(uploaded_image)
