@@ -114,7 +114,7 @@ def process():
         #st.subheader('Upload Dataset')
         #uploaded_data = st.file_uploader("Upload Dataset", type="xlsx")
 
-        if uploaded_image is not None and uploaded_data is not None:
+        if uploaded_image is not None: #uploaded_data is not None:
             image = Image.open(uploaded_image)
             st.session_state['uploaded_image'] = image
             st.image(image, width=150, caption='Uploaded Image', use_column_width=False)
