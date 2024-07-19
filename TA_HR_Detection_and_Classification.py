@@ -119,10 +119,10 @@ def process():
             st.session_state['uploaded_image'] = image
             st.image(image, width=150, caption='Uploaded Image', use_column_width=False)
 
-            df = pd.read_excel(uploaded_data)
-            st.session_state['uploaded_data'] = df
-            st.write('Dataframe dari file yang diunggah:')
-            st.write(df)
+            #df = pd.read_excel(uploaded_data)
+            #st.session_state['uploaded_data'] = df
+            #st.write('Dataframe dari file yang diunggah:')
+            #st.write(df)
 
             # Button to run the processing pipeline
             if st.button("Process"):
