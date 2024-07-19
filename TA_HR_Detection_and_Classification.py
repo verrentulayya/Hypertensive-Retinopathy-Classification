@@ -5,7 +5,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from skimage.feature import local_binary_pattern
 import joblib
-import base64
 import os
 
 # Helper functions
@@ -63,13 +62,12 @@ def calculate_lbp_histogram(image, radius=3, n_points=24):
     hist, _ = np.histogram(lbp, bins=n_bins, range=(0, n_bins), density=True)
     return hist
 
-def extract_lbp_features(images, filenames, dataset):
-    features_with_filenames = []
-    for image, filename in zip(images, filenames):
+def extract_lbp_features(images):
+    features = []
+    for image in images:
         lbp_feature = calculate_lbp_histogram(image)
-        diagnosis = dataset.loc[dataset['Filename'] == filename, 'Diagnosis'].values[0]
-        features_with_filenames.append((filename, lbp_feature, diagnosis))
-    return features_with_filenames
+        features.append(lbp_feature)
+    return features
 
 # Streamlit app configuration
 st.set_page_config(layout="wide")
@@ -153,18 +151,12 @@ def process():
                 table_data = {
                     "Fitur": [],
                     "Nilai Fitur": [],
-                    "Fitur": [],
-                    "Nilai Fitur": []
                 }
 
                 # Fill data with LBP histogram features
                 for i, value in enumerate(lbp_histogram):
-                    if i < len(lbp_histogram) // 2:
-                        table_data["Fitur"].append(f"Feature {i}")
-                        table_data["Nilai Fitur"].append(f"{value:.4f}")
-                    else:
-                        table_data["Fitur"].append(f"Feature {i}")
-                        table_data["Nilai Fitur"].append(f"{value:.4f}")
+                    table_data["Fitur"].append(f"Feature {i}")
+                    table_data["Nilai Fitur"].append(f"{value:.4f}")
 
                 # Create a DataFrame from the table data
                 table_df = pd.DataFrame(table_data)
@@ -172,18 +164,9 @@ def process():
                 # Display the table
                 st.table(table_df)
 
-                # LBP Features with filenames for dataset
-                median_images = [median_masked_rgb]  # Menggunakan median_masked_rgb yang sudah dikonversi ke RGB
-                filenames = [uploaded_image.name]
-                lbp_features_with_filenames = extract_lbp_features(median_images, filenames)
-
-                # Inisialisasi list untuk menyimpan fitur LBP dan label diagnosis
-                lbp_features = []
-                diagnosis_labels = []
-
-                for filename, lbp_feature, diagnosis in lbp_features_with_filenames:
-                    lbp_features.append(lbp_feature)
-                    diagnosis_labels.append(diagnosis)
+                # LBP Features for the uploaded image
+                median_images = [median_masked_rgb]  # Using median_masked_rgb that has been converted to RGB
+                lbp_features = extract_lbp_features(median_images)
 
                 # Preprocess Data for SVM
                 x = np.vstack(lbp_features)
@@ -193,11 +176,6 @@ def process():
                     x_zero = np.hstack((x, np.zeros((x.shape[0], zero_fitur))))
                 else:
                     x_zero = x
-
-                y = np.array(diagnosis_labels)
-
-                # Convert y to 1D array
-                y = y.ravel()
 
                 # Load SVM model from .pkl file
                 model_path = 'svm_modelPOLY.pkl'
