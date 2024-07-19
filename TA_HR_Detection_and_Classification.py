@@ -195,7 +195,7 @@ def process():
 
                 # Print prediction result
                 st.write("### Hasil Prediksi:")
-                if y_pred[0] == 1:
+                if y_pred[0] == 0:
                     st.write("Diagnosis: Normal")
                 else:
                     st.write("Diagnosis: Retinopati Hipertensi")
