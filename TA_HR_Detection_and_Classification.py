@@ -195,7 +195,7 @@ def process():
 
                 # Print prediction result
                 st.write("### Hasil Prediksi:")
-                if y_pred[1] == 0:
+                if y_pred[0] == 0:
                     st.write("Diagnosis: Normal")
                 else:
                     st.write("Diagnosis: Retinopati Hipertensi")
@@ -206,7 +206,7 @@ def process():
                 if 'svm_prediction' not in st.session_state:
                     st.session_state['svm_prediction'] = {}
 
-                st.session_state['svm_prediction']['y_pred'] = y_pred[1]
+                st.session_state['svm_prediction']['y_pred'] = y_pred[0]
 
             # Reset button
             if st.button("Reset"):
