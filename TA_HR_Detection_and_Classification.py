@@ -77,8 +77,6 @@ st.title('Deteksi dan Klasifikasi Retinopati Hipertensi dari Citra Fundus Retina
 st.markdown('---')
 st.subheader('Nama: Verrent Ulayya Ans')
 st.subheader('NRP: 5023201066')
-#st.subheader('Dosen Pembimbing 1: Dr. Tri Arief Sardjono, S.T., M.T.')
-#st.subheader('Dosen Pembimbing 2: Nada Fitrieyatul Hikmah, S.T., M.T.')
 
 # Membuat tab di dalam halaman utama
 tabs = st.tabs(["Input Data Pasien", "Pemrosesan dan Summary"])
@@ -110,19 +108,10 @@ def process():
         st.subheader('Upload Image')
         uploaded_image = st.file_uploader("Upload Image", type=["png", "jpg", "jpeg"])
 
-        # Upload dataset
-        #st.subheader('Upload Dataset')
-        #uploaded_data = st.file_uploader("Upload Dataset", type="xlsx")
-
-        if uploaded_image is not None: #uploaded_data is not None:
+        if uploaded_image is not None:
             image = Image.open(uploaded_image)
             st.session_state['uploaded_image'] = image
             st.image(image, width=150, caption='Uploaded Image', use_column_width=False)
-
-            #df = pd.read_excel(uploaded_data)
-            #st.session_state['uploaded_data'] = df
-            #st.write('Dataframe dari file yang diunggah:')
-            #st.write(df)
 
             # Button to run the processing pipeline
             if st.button("Process"):
@@ -186,7 +175,7 @@ def process():
                 # LBP Features with filenames for dataset
                 median_images = [median_masked_rgb]  # Menggunakan median_masked_rgb yang sudah dikonversi ke RGB
                 filenames = [uploaded_image.name]
-                lbp_features_with_filenames = extract_lbp_features(median_images, filenames, df)
+                lbp_features_with_filenames = extract_lbp_features(median_images, filenames)
 
                 # Inisialisasi list untuk menyimpan fitur LBP dan label diagnosis
                 lbp_features = []
